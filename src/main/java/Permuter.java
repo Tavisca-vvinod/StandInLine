@@ -1,28 +1,28 @@
 import java.util.ArrayList;
 import java.util.List;
 public class Permuter {
-    public static List<List<Integer>> permute(int[] array) {
-        int [] soldiers=new int[array.length];
-        for(int i=0;i<array.length;i++)
+    public static List<List<Integer>> permute(int[] soldiers) {
+        int [] soldierSequence=new int[soldiers.length];
+        for(int i=0;i<soldiers.length;i++)
         {
-            soldiers[i]=i+1;
+            soldierSequence[i]=i+1;
         }
-        List<List<Integer>> list = new ArrayList<>();
-        permuteHelper(list, new ArrayList<>(), soldiers);
-        return list;
+        List<List<Integer>> permutation = new ArrayList<>();
+        permuteHelper(permutation, new ArrayList<>(), soldierSequence);
+        return permutation;
     }
-    private static void permuteHelper(List<List<Integer>> list, List<Integer> resultList, int [] arr){
-        if(resultList.size() == arr.length){
-            list.add(new ArrayList<>(resultList));
+    private static void permuteHelper(List<List<Integer>> permutation, List<Integer> resultList, int [] soldierSequence){
+        if(resultList.size() == soldierSequence.length){
+            permutation.add(new ArrayList<>(resultList));
         }
         else{
-            for(int i = 0; i < arr.length; i++){
-                if(resultList.contains(arr[i]))
+            for(int i = 0; i < soldierSequence.length; i++){
+                if(resultList.contains(soldierSequence[i]))
                 {
                     continue;
                 }
-                resultList.add(arr[i]);
-                permuteHelper(list, resultList, arr);
+                resultList.add(soldierSequence[i]);
+                permuteHelper(permutation, resultList, soldierSequence);
                 resultList.remove(resultList.size() - 1);
             }
         }
