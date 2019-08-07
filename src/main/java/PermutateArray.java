@@ -2,14 +2,37 @@ import java.util.ArrayList;
 import java.util.List;
 public class PermutateArray {
     public static void main(String[] args) {
-        test( new int[]{  2, 1, 1, 0  });
+        test( new int[]{ 5, 4, 3, 2, 1, 0   });
     }
     public static void test(int[]array){
         PermutateArray permutateArray=new PermutateArray();
         List<List<Integer>> permutations = permutateArray.permute(array);
         for(List<Integer> permutation:permutations)
         {
-            System.out.println(permutation);
+            int allClear=0;
+            for (int i =0;i<permutation.size();i++)
+            {
+                int high=0;
+                for(int j=0;j<i;j++)
+                {
+                    if(permutation.get(j)>permutation.get(i))
+                    {
+                        high++;
+                    }
+                }
+                if(high==array[permutation.get(i)-1])
+                {
+                    allClear++;
+                }
+            }
+            if(allClear==array.length)
+            {
+                for(int k:permutation)
+                {
+                    System.out.print(k+" ");
+                }
+                System.exit(0);
+            }
         }
     }
     public List<List<Integer>> permute(int[] array) {
