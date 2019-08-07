@@ -7,4 +7,11 @@ public class Program {
         System.out.println(Arrays.equals(SequenceFinder.findSequence( new int[] {6,1,1,1,2,0,0}),(new Integer [] {6,2,3,4,7,5,1}))? "PASS":"FAIL");
         System.out.println(Arrays.equals(SequenceFinder.findSequence( new int[] {2,1,1,0}),(new Integer [] {4,2,1,3}))? "PASS":"FAIL");
     }
+    /*
+    output :
+    PASS
+    PASS
+    PASS
+    PASS
+     */
 }
