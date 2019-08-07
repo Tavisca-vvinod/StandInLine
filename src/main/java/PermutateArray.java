@@ -1,10 +1,14 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 public class PermutateArray {
     public static void main(String[] args) {
-        test( new int[]{ 5, 4, 3, 2, 1, 0   });
+        System.out.println(Arrays.equals(test( new int[] {0,0,0,0,0}),(new int [] {1,2,3,4,5}))? "PASS":"FAIL");
+        System.out.println(Arrays.equals(test( new int[] {5,4,3,2,1,0}),(new int [] {6,5,4,3,2,1}))? "PASS":"FAIL");
+        System.out.println(Arrays.equals(test( new int[] {6,1,1,1,2,0,0}),(new int [] {6,2,3,4,7,5,1}))? "PASS":"FAIL");
+        System.out.println(Arrays.equals(test( new int[] {2,1,1,0}),(new int [] {4,2,1,3}))? "PASS":"FAIL");
     }
-    public static void test(int[]array){
+    public static int[] test(int[]array){
         PermutateArray permutateArray=new PermutateArray();
         List<List<Integer>> permutations = permutateArray.permute(array);
         for(List<Integer> permutation:permutations)
@@ -27,14 +31,22 @@ public class PermutateArray {
             }
             if(allClear==array.length)
             {
-                for(int k:permutation)
-                {
-                    System.out.print(k+" ");
-                }
-                System.exit(0);
+                int[] permuttation=convertToArray(permutation);
+                return permuttation;
             }
         }
+        return null;
     }
+
+    private static int[] convertToArray(List<Integer> permutation) {
+        int[] permuttation=new int [permutation.size()];
+        for(int i=0;i<permutation.size();i++)
+        {
+            permuttation[i]=permutation.get(i);
+        }
+        return permuttation;
+    }
+
     public List<List<Integer>> permute(int[] array) {
         int [] soldiers=new int[array.length];
         for(int i=0;i<array.length;i++)
