@@ -1,32 +1,26 @@
-import java.util.List;
-
 public class SequenceFinder {
     public static Integer[] findSequence(int[] left){
-        List<List<Integer>> permutationsPossible = Permuter.permute(left);
-        for(List<Integer> permutation:permutationsPossible)
+        Integer [] soldierSequene=new Integer[left.length];
+        for(int i=0;i<left.length;i++)
         {
-            int allClear=0;
-            for (int i =0;i<permutation.size();i++)
+            soldierSequene[i]=-1;
+        }
+        for(int i=0;i<left.length;i++)
+        {
+            int numberOfBlanksNeeded=left[i];
+            int availBlanks=0;
+            for(int j=0;j<soldierSequene.length;j++)
             {
-                int validRules=0;
-                for(int j=0;j<i;j++)
+                if(soldierSequene[j]==-1)
                 {
-                    if(permutation.get(j)>permutation.get(i))
-                    {
-                        validRules++;
+                    availBlanks++;
+                    if(availBlanks==numberOfBlanksNeeded+1){
+                        soldierSequene[j]=i+1;
+                        break;
                     }
                 }
-                if(validRules==left[permutation.get(i)-1])
-                {
-                    allClear++;
-                }
-            }
-            if(allClear==left.length)
-            {
-                Integer[] soldierSequence = permutation.toArray(new Integer[permutation.size()]);
-                return soldierSequence;
             }
         }
-        return null;
+        return soldierSequene;
     }
 }
